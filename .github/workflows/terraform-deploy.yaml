@@ -1,0 +1,14 @@
+name: Terraform deploy
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  terraform:
+    name: terraform test
+    runs-on: ubuntu-latest
+  
+  - name: test
+        run: |
+          ls 
