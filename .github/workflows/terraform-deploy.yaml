@@ -23,4 +23,4 @@ jobs:
       - name: Terraform init
         id: init
         run: |
-          ls -al
+          ls
