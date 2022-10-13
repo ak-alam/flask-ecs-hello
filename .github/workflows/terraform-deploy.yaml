@@ -28,8 +28,8 @@ jobs:
         run: |
           cd terraform
           terraform init -backend-config=./configs/backend.tfvars -upgrade=true -no-color -input=false
-      - name: Terraform plan
-        id: plan
-        run: |
-          cd terraform
-          terraform plan -var-file=./configs/staging.tfvars -no-color -input=false
+      # - name: Terraform plan
+      #   id: plan
+      #   run: |
+      #     cd terraform
+      #     terraform plan -var-file=./configs/staging.tfvars -no-color -input=false
