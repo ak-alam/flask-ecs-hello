@@ -3,6 +3,8 @@ name: Terraform Deployment
 on:
   push:
     branches: [ main ]
+    paths:
+      - terraform/**
 jobs:
   terraform:
     name: terraform test
