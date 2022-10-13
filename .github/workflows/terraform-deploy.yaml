@@ -27,7 +27,8 @@ jobs:
         id: init
         run: |
           cd terraform
-          terraform init -backend-config="backend.tfvars" -upgrade=true -no-color -input=false
+          cat backend.tf
+          terraform init -backend-config="backend.tf" -upgrade=true -no-color -input=false
       # - name: Terraform plan
       #   id: plan
       #   run: |
