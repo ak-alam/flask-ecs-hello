@@ -5,10 +5,16 @@ on:
     branches: [ main ]
     paths:
       - terraform/**
+env:
+  TF_LOG: INFO
+
 jobs:
   terraform:
     name: terraform test
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
 
   #branch checkout
     env: 
@@ -16,8 +22,11 @@ jobs:
       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       aws-region: us-west-2
     steps:
-      - uses: actions/checkout@v2
-      - uses: hashicorp/setup-terraform@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      -name: Setup terraform
+       uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: false
       # - name: Switch to terraform Dir
