@@ -22,14 +22,12 @@ jobs:
           terraform_wrapper: false
       - name: Switch to terraform Dir
         run: |
-          ls
           cd terraform
-          ls
-      # - name: Terraform init
-      #   id: init
-      #   run: |
-      #     terraform init -backend-config=terraform/backend.tf -upgrade=true -no-color -input=false
-      # - name: Terraform plan
-      #   id: plan
-      #   run: |
-      #     terraform plan -var-file=terraform/configs/staging.tfvars -no-color -input=false
+      - name: Terraform init
+        id: init
+        run: |
+          terraform init -backend-config=backend.tf -upgrade=true -no-color -input=false
+      - name: Terraform plan
+        id: plan
+        run: |
+          terraform plan -var-file=./configs/staging.tfvars -no-color -input=false
