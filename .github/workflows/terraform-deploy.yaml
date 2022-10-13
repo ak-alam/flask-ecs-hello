@@ -20,14 +20,16 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: false
-      - name: Switch to terraform Dir
-        run: |
-          cd terraform
+      # - name: Switch to terraform Dir
+      #   run: |
+      #     cd terraform
       - name: Terraform init
         id: init
         run: |
+          cd terraform
           terraform init -backend-config=backend.tf -upgrade=true -no-color -input=false
       - name: Terraform plan
         id: plan
         run: |
+          cd terraform
           terraform plan -var-file=./configs/staging.tfvars -no-color -input=false
