@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def welcome():
-    return "Index Page"
+    return "Testing terraform folder changes"
     
 @app.route('/hello', methods=['GET', 'POST'])
 def hello_world():
