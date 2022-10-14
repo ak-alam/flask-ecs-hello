@@ -38,7 +38,7 @@ jobs:
           ECR_REPOSITORY: akbar-flaskapp # ${{ secrets.ECR_REPOSITORY }} #ak-hello-flask
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
+          IMAGE_TAG=$(git rev-parse --short)
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       
