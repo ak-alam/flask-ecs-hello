@@ -43,7 +43,8 @@ jobs:
           IMAGE_TAG=$(git rev-parse --short HEAD)
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          docker push -a $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push -a $ECR_REGISTRY/$ECR_REPOSITORY
+         # docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       
       # - name: Logout of ecr
       #   if: always()
