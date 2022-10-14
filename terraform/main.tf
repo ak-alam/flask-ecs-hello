@@ -9,43 +9,43 @@ module "vpc" {
   prefix = "akbar"
 }
 
-# module "lb-Sg" {
-#   source = "./modules/sg"
-#   vpc_id = module.vpc.vpcId
-#   ingress_traffic = var.lb_IngressTraffic
-#   protocol = "tcp"
-#   prefix = "lb"
-# }
+module "lb-Sg" {
+  source = "./modules/sg"
+  vpc_id = module.vpc.vpcId
+  ingress_traffic = var.lb_IngressTraffic
+  protocol = "tcp"
+  prefix = "lb"
+}
 
-# module "ecs_sg"{
-#   source = "./modules/sg"
-#   vpc_id = module.vpc.vpcId
-#   ingress_traffic = var.ecs_IngressTraffic
-#   protocol = "tcp"
-#   prefix = "ecs"
-# }
+module "ecs_sg"{
+  source = "./modules/sg"
+  vpc_id = module.vpc.vpcId
+  ingress_traffic = var.ecs_IngressTraffic
+  protocol = "tcp"
+  prefix = "ecs"
+}
 
-# module "applicationLB" {
-#   source = "./modules/lb"
-#   internal = false 
-#   type = "application"
-#   security_groups = ["${module.lb-Sg.security_group}"]
-#   subne_Ids = module.vpc.public_subnet
-#   vpc_Id = module.vpc.vpcId
-#   deregistration_delay = var.deregistration_delay
-#   tg_vars = local.alb.1
-#   prefix = "alb"
+module "applicationLB" {
+  source = "./modules/lb"
+  internal = false 
+  type = "application"
+  security_groups = ["${module.lb-Sg.security_group}"]
+  subne_Ids = module.vpc.public_subnet
+  vpc_Id = module.vpc.vpcId
+  deregistration_delay = var.deregistration_delay
+  tg_vars = local.alb.1
+  prefix = "alb"
 
-# }
+}
 
-# module "ecr" {
-#   source = "./modules/ecr"
-#   ecr_name = var.ecr_name
-# }
-# module "ecs_task_execution_role" {
-#   source = "./modules/roles"
-#   task_role_name = var.task_role_name
-# }
+module "ecr" {
+  source = "./modules/ecr"
+  ecr_name = var.ecr_name
+}
+module "ecs_task_execution_role" {
+  source = "./modules/roles"
+  task_role_name = var.task_role_name
+}
 
 # module "ecs" {
 #   source = "./modules/ecs"
