@@ -43,4 +43,4 @@ jobs:
         id: plan
         working-directory: ./terraform
         run: |
-          terraform plan -var-file=staging.tfvars -input=false
+          terraform plan -var-file=./configs/staging.tfvars -input=false
