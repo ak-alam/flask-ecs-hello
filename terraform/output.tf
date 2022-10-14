@@ -1,3 +1,3 @@
-# output "ecr_url" {
-#   value = module.ecr.ecr_uri
-# }
+output "ecr_url" {
+  value = module.ecr.ecr_uri
+}
