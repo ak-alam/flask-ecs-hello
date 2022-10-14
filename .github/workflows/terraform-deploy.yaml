@@ -37,6 +37,10 @@ jobs:
         working-directory: ./terraform
         run: |
           terraform init  
-          
         #-backend-config="backend.tf" -input=false
-    
+        
+      - name: Terraform plan
+        id: plan
+        working-directory: ./terraform
+        run: |
+          terraform plan -var-file=staging.tfvars -input=false
