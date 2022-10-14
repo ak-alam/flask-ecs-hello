@@ -32,14 +32,15 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build, tag and push to ecr
+        working-directory: ./src
         env:
           ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }} #489994096722.dkr.ecr.us-east-2.amazonaws.com
           ECR_REPOSITORY: akbar-flaskapp # ${{ secrets.ECR_REPOSITORY }} #ak-hello-flask
           IMAGE_TAG: ${{ github.sha }}
         run: |
-
+          IMAGE_TAG=$(git rev-parse --short "$GITHUB_SHA")
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-      #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       
       # - name: Logout of ecr
       #   if: always()
