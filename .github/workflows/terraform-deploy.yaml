@@ -36,5 +36,7 @@ jobs:
         id: init
         working-directory: ./terraform
         run: |
-          terraform init -backend-config="backend.tf" -input=false
+          terraform init  
+          
+        #-backend-config="backend.tf" -input=false
     
