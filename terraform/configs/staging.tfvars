@@ -60,7 +60,7 @@ container_definitions = {
 }
 service_vars = {
     service_name = "akbar-service"
-    desired_count = 0
+    desired_count = 1
   }
 
 test="da"
