@@ -51,7 +51,7 @@ module "ecs" {
   source = "./modules/ecs"
   cluster_name = var.cluster_name
   
-  image_url = module.ecr.ecr_uri
+  image_url = "${module.ecr.ecr_uri}:latest"
   task_execution_role = module.ecs_task_execution_role.ecs_tasks_role
   # fargate_cpu = var.fargate_cpu
   # fargate_memory = var.fargate_memory
