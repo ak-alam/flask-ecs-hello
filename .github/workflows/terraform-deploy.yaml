@@ -1,27 +1,20 @@
 name: Terraform Deployment
 
 on:
+
+  workflow_dispatch:
   push:
     branches: [ main ]
     paths:
       - terraform/**
-# env:
-#   TF_LOG: INFO
 
 jobs:
   terraform:
-    name: terraform test
+    name: terraform Infra
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-
-  #branch checkout
-    env: 
-      aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      aws-region: us-west-2
-      # TF_LOG: INFO
 
     steps:
       - name: Checkout
@@ -31,31 +24,17 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: false
-      # - name: Switch to terraform Dir
-      #   run: |
-      #     cd terraform
 
-
-      - name: Get remote state
-        uses: dflook/terraform-remote-state@v1
-        id: remote-state
+      - name: AWS Configs
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          backend_type: s3
-          backend_config: |
-            bucket=ak-terraform-backend
-            key=terraform.tfstate
-            region=us-west-2
-            dynamodb_table=ak-terraform-backend-table
+           aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Terraform init
         id: init
+        working-directory: ./terraform
         run: |
-          cd terraform
-          cat backend.tf
-          
-          terraform init -backend-config="backend.tf" -input=false
-      # - name: Terraform plan
-      #   id: plan
-      #   run: |
-      #     cd terraform
-      #     terraform plan -var-file=./configs/staging.tfvars -no-color -input=false
+          terraform init -backend-config=backend.tf -input=false
+    
