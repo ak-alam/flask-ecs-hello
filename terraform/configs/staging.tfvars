@@ -62,3 +62,5 @@ service_vars = {
     service_name = "akbar-service"
     desired_count = 0
   }
+
+test="sd"
