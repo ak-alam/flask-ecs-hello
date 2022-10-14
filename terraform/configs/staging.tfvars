@@ -63,4 +63,4 @@ service_vars = {
     desired_count = 1
   }
 
-test="ddda"
+test="da"
