@@ -12,7 +12,7 @@ terraform {
     # key = "terraform.tfstate"
     key = "LockID"
     region = "us-west-2"
-    dynamodb_table = "terraform.tfstate"
+    dynamodb_table = "hello-flask-github-action-table"
  
   }
 }
