@@ -63,4 +63,4 @@ service_vars = {
     desired_count = 0
   }
 
-test="sd"
+test="s"

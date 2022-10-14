@@ -44,3 +44,10 @@ jobs:
         working-directory: ./terraform
         run: |
           terraform plan -var-file=./configs/staging.tfvars -input=false
+
+      - name: Terraform apply
+        if: github.ref == "refs/heads/main"
+        id: apply
+        working-directory: ./terraform
+        run: |
+          terraform apply -var-file=./configs/staging.tfvars -input=false
